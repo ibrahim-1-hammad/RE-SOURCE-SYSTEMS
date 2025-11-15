@@ -1,0 +1,174 @@
+/* assets/css/admin_style.css - مُحدَّث بتصميم عصري */
+
+body {
+    font-family: 'Tahoma', 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; /* خلفية بيضاء خفيفة جداً */
+    color: #333;
+    direction: rtl;
+    text-align: right;
+}
+
+/* Header & Navigation */
+.admin-header {
+    background-color: #0d47a1; 
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-header h1 {
+    font-size: 1.6em;
+    font-weight: 700;
+}
+
+/* Main Content Area */
+.admin-container {
+    padding: 30px;
+}
+
+/* Headings */
+section h3 {
+    color: #0d47a1;
+    font-size: 1.8em;
+    border-right: 4px solid #e65100; /* شريط جانبي للتمييز */
+    padding-right: 15px;
+    margin-bottom: 30px;
+}
+
+/* Stats Grid for Key Performance Indicators (KPIs) - تصميم البطاقات */
+.stats-grid {
+    display: grid;
+    /* تخطيط مرن يتضمن 3 أو 4 أعمدة على الشاشات الكبيرة */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.stat-box {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e9ecef; /* حدود خفيفة جداً */
+    transition: transform 0.2s;
+}
+
+.stat-box:hover {
+    transform: translateY(-3px); /* تأثير رفع عصري */
+}
+
+.stat-box h2 {
+    color: #e65100; /* البرتقالي للأرقام الكبيرة */
+    font-size: 2.2em; 
+    margin: 0 0 5px 0;
+    font-weight: 700;
+}
+
+.stat-box p {
+    color: #5a6270; /* رمادي أغمق للعناوين الفرعية */
+    margin: 0;
+    font-weight: 500;
+    font-size: 0.95em;
+}
+
+/* Chart/Graph Area */
+.chart-area {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 40px;
+}
+
+.chart-area h4 {
+    color: #0d47a1;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.chart-placeholder {
+    /* زيادة الاحترافية بالتأكيد على البيانات */
+    width: 100%;
+    height: 350px;
+    background-color: #f4f6f9;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    font-weight: bold;
+}
+
+/* Data Table Styles (المهام) */
+.data-table {
+    width: 100%;
+    border-collapse: separate; /* لفصل الخلايا وإضافة حواف */
+    border-spacing: 0 8px; /* مسافة بين الصفوف */
+    background: transparent;
+}
+
+.data-table th, .data-table td {
+    padding: 15px;
+    text-align: right;
+}
+
+.data-table th {
+    background-color: #f2f4f7;
+    color: #495057;
+    font-weight: 600;
+    border: none;
+    font-size: 0.9em;
+}
+
+.data-table tbody tr {
+    background-color: white;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+}
+.data-table tbody td {
+    border-top: none;
+    border-bottom: none;
+    font-size: 0.9em;
+}
+.data-table tbody tr:first-child td {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.data-table tbody tr:last-child td {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/* Action Buttons */
+.action-links {
+    margin-bottom: 20px;
+}
+.action-links a {
+    display: inline-block;
+    background-color: #00c853; /* أخضر للإجراءات الجديدة */
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    margin-left: 10px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+.action-links a:hover {
+    background-color: #009624;
+}
+
+/* Footer & Utilities */
+footer {
+    background-color: #e9ecef;
+    color: #6c757d;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 50px;
+    font-size: 0.85em;
+}

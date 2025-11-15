@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RE:SOURCE SYSTEMS</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            -webkit-text-size-adjust: none; /* لمنع التكبير التلقائي على iOS */
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .header {
+            background: linear-gradient(to right, #0d47a1, #4CAF50);
+            padding: 20px 20px;
+            text-align: center; /* لمركزة اللوجو والنص */
+        }
+        .header img { /* تنسيق اللوجو */
+            max-width: 120px; /* حجم أقصى مناسب للوجو */
+            height: auto;
+            display: block; /* لضمان ظهور الصورة في سطر منفصل */
+            margin: 0 auto 10px auto; /* لمركزة الصورة وإضافة مسافة أسفلها */
+        }
+        .logo-text {
+            color: #FFFFFF;
+            font-size: 24px;
+            font-weight: bold;
+            display: block; /* لضمان ظهور النص في سطر منفصل أسفل اللوجو */
+        }
+        .content {
+            padding: 30px 40px;
+            color: #333333;
+            line-height: 1.6;
+        }
+        .title {
+            color: #4CAF50; /* الأخضر يرمز للاستدامة */
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: right;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 25px;
+            margin-top: 20px;
+            background: linear-gradient(to right, #0d47a1, #4CAF50);
+            color: #ffffff !important;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .footer {
+            background-color: #f4f4f4;
+            padding: 20px 40px;
+            text-align: center;
+            font-size: 12px;
+            color: #777777;
+            border-top: 1px solid #eeeeee;
+        }
+        .footer a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body style="text-align: right; direction: rtl;">
+    <div class="container">
+        <div class="header">
+            <img src="rs-logo-2.png" alt="RE:SOURCE SYSTEMS Logo" style="max-width: 120px; height: auto; display: block; margin: 0 auto 10px auto;">
+            <span class="logo-text">RE:SOURCE SYSTEMS</span>
+        </div>
+
+        <div class="content">
+            <p style="text-align: right;">مرحباً {{ recipient_name }}،</p>
+            <h1 class="title">{{ title }}</h1>
+
+            <div style="font-size: 16px;">
+                {{ body_content }}
+            </div>
+            
+            <p style="text-align: center;">
+                <a href="{{ cta_link }}" class="button">
+                    {{ cta_text }}
+                </a>
+            </p>
+
+            <p style="margin-top: 30px; text-align: right;">مع خالص التحية،</p>
+            <p style="text-align: right;">فريق RE:SOURCE SYSTEMS</p>
+        </div>
+
+        <div class="footer">
+            <p>حلول تدوير المنسوجات من أجل مستقبل مستدام.</p>
+            <p>
+                <a href="#">إلغاء الاشتراك</a> | <a href="#">سياسة الخصوصية</a>
+            </p>
+            <p>&copy; {{ current_year }} RE:SOURCE SYSTEMS. جميع الحقوق محفوظة.</p>
+        </div>
+    </div>
+    <script src="/send_email.py"></script>
+</body>
+</html>

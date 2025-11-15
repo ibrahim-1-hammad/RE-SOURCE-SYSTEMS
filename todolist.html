@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthy Store Launch Plan</title>
+    <!-- Chosen Palette: Healthy Vitality (from Source Report) -->
+    <!-- Application Structure Plan: An interactive dashboard SPA. The main navigation switches between three views: 'Launch Dashboard', 'Store Structure', and 'Brand & Tech'. The default 'Launch Dashboard' is the core, featuring a phase filter (buttons for Phase 1-4) that dynamically displays the relevant tasks for that phase. This task-oriented, interactive filtering approach was chosen over a static report to make the 4-phase plan easily digestible and non-overwhelming for the user. A donut chart visualizes the distribution of task types. -->
+    <!-- Visualization & Content Choices: 1. Launch Tasks (Report Info) -> Goal: Organize/Explore -> Viz: Interactive Task List (HTML/CSS) -> Interaction: Click phase buttons to filter tasks -> Justification: Breaks down a long 12-item list into 4 manageable-steps. 2. Task Type Distribution (Derived) -> Goal: Inform (Overview) -> Viz: Donut Chart (Chart.js/Canvas) -> Interaction: Hover for tooltips -> Justification: Provides a quick visual summary of project effort. 3. Color Palette (Report Info) -> Goal: Inform -> Viz: Styled HTML swatches -> Justification: More visual than a table. 4. Tech Stack/Categories (Report Info) -> Goal: Inform -> Viz: Styled HTML tables. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .nav-button {
+            transition: all 0.3s ease;
+        }
+        .nav-button.active {
+            background-color: #1D703F;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .nav-button:not(.active):hover {
+            background-color: #f0fdf4;
+            transform: translateY(-2px);
+        }
+        .phase-button {
+            transition: all 0.3s ease;
+        }
+        .phase-button.active {
+            background-color: #1D703F;
+            color: white;
+            border-color: #1D703F;
+        }
+        .phase-button:not(.active) {
+            color: #1D703F;
+            border-color: #1D703F;
+        }
+        .phase-button:not(.active):hover {
+            background-color: #f0fdf4;
+        }
+        .task-card {
+            border-left: 4px solid #1D703F;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-[#1D703F]">Healthy Store Launch Plan</h1>
+            <p class="text-lg text-gray-600 mt-2">An interactive dashboard to track your project from scratch to launch.</p>
+        </header>
+
+        <nav id="mainNav" class="flex justify-center gap-2 md:gap-4 mb-8">
+            <button data-view="dashboard" class="nav-button active font-semibold py-2 px-4 md:px-6 rounded-full shadow-sm bg-white text-gray-800">
+                🚀 Launch Dashboard
+            </button>
+            <button data-view="structure" class="nav-button font-semibold py-2 px-4 md:px-6 rounded-full shadow-sm bg-white text-gray-800">
+                🏛️ Store Structure
+            </button>
+            <button data-view="brandtech" class="nav-button font-semibold py-2 px-4 md:px-6 rounded-full shadow-sm bg-white text-gray-800">
+                🎨 Brand & Tech
+            </button>
+        </nav>
+
+        <main>
+            <div id="view-dashboard" class="view-content">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    
+                    <div class="lg:col-span-2 bg-white p-6 rounded-lg shadow-lg">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-6">Action Plan & Task List</h2>
+                        <p class="text-gray-600 mb-6">
+                            The project is divided into 4 phases. Select a phase below to view the detailed tasks required for completion. This interactive list helps you focus on one stage at a time.
+                        </p>
+                        
+                        <div id="phase-nav" class="flex flex-wrap gap-2 mb-6 border-b border-gray-200 pb-6">
+                            <button data-phase="1" class="phase-button active text-sm font-bold py-2 px-4 rounded-lg border-2">
+                                Phase 1: Planning & Setup
+                            </button>
+                            <button data-phase="2" class="phase-button text-sm font-bold py-2 px-4 rounded-lg border-2">
+                                Phase 2: Development & Content
+                            </button>
+                            <button data-phase="3" class="phase-button text-sm font-bold py-2 px-4 rounded-lg border-2">
+                                Phase 3: Pre-Launch & Testing
+                            </button>
+                            <button data-phase="4" class="phase-button text-sm font-bold py-2 px-4 rounded-lg border-2">
+                                Phase 4: Launch & Optimization
+                            </button>
+                        </div>
+
+                        <div id="tasks-container">
+                            <div id="phase-1-tasks" class="phase-content space-y-4">
+                                <div>
+                                    <h3 class="text-lg font-semibold text-[#1D703F]">1. Business & Legal</h3>
+                                    <ul class="list-disc list-inside text-gray-700 space-y-1 mt-2">
+                                        <li>Finalize business name and register the domain name.</li>
+                                        <li>Obtain necessary business licenses and health/food regulatory permits.</li>
+                                        <li>Set up legal documents: Terms of Service, Privacy Policy, Shipping/Return Policy.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-[#1D703F]">2. Branding</h3>
+                                    <ul class="list-disc list-inside text-gray-700 space-y-1 mt-2">
+                                        <li>Design and finalize the Logo.</li>
+                                        <li>Select platform theme and apply the custom color palette and fonts.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-[#1D703F]">3. Financial Setup</h3>
+                                    <ul class="list-disc list-inside text-gray-700 space-y-1 mt-2">
+                                        <li>Set up business bank accounts.</li>
+                                        <li>Integrate and test payment gateways.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div id="phase-2-tasks" class="phase-content hidden space-y-4">
+                                <div>
+                                    <h3 class="text-lg font-semibold text-[#1D703F]">4. Platform Build</h3>
+                                    <ul class="list-disc list-inside text-gray-700 space-y-1 mt-2">
+                                        <li>Install the chosen platform (Shopify/WooCommerce).</li>
+                                        <li>Install essential apps (SEO, reviews, security, subscription).</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-[#1D703F]">5. Product Sourcing & Inventory</h3>
+                                    <ul class="list-disc list-inside text-gray-700 space-y-1 mt-2">
+                                        <li>Finalize supplier agreements and initial inventory.</li>
+                                        <li>Create master product list with exact nutritional data, ingredients, and expiration rules.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-[#1D703F]">6. Photography & Content</h3>
+                                    <ul class="list-disc list-inside text-gray-700 space-y-1 mt-2">
+                                        <li>Shoot high-quality professional photos for all products.</li>
+                                        <li>Write compelling, SEO-optimized product descriptions and category introductions.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-[#1D703F]">7. Shipping Logistics</h3>
+                                    <ul class="list-disc list-inside text-gray-700 space-y-1 mt-2">
+                                        <li>Define shipping zones, carriers, and rates.</li>
+                                        <li>Source and design custom packaging.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div id="phase-3-tasks" class="phase-content hidden space-y-4">
+                                <div>
+                                    <h3 class="text-lg font-semibold text-[#1D703F]">8. Quality Assurance (QA)</h3>
+                                    <ul class="list-disc list-inside text-gray-700 space-y-1 mt-2">
+                                        <li>Test entire purchase flow: Cart, coupons, tax, shipping, payment.</li>
+                                        <li>Test account creation, login, and profile management.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-[#1D703F]">9. Compliance Check</h3>
+                                    <ul class="list-disc list-inside text-gray-700 space-y-1 mt-2">
+                                        <li>Verify all pages load correctly on Mobile, Tablet, and Desktop.</li>
+                                        <li>Check legal documents visibility and linking (especially at checkout).</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-[#1D703F]">10. Marketing Setup</h3>
+                                    <ul class="list-disc list-inside text-gray-700 space-y-1 mt-2">
+                                        <li>Set up Google Analytics 4 (GA4) and Google Search Console.</li>
+                                        <li>Define initial SEO keywords.</li>
+                                        <li>Set up social media profiles (Instagram/TikTok).</li>
+                                        <li>Test Email Automations (Welcome sequence, Abandoned Cart).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div id="phase-4-tasks" class="phase-content hidden space-y-4">
+                                <div>
+                                    <h3 class="text-lg font-semibold text-[#1D703F]">11. Launch Day</h3>
+                                    <ul class="list-disc list-inside text-gray-700 space-y-1 mt-2">
+                                        <li>Remove password protection/maintenance mode.</li>
+                                        <li>Submit sitemap to search engines.</li>
+                                        <li>Announce on social media and launch the first email campaign.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-[#1D703F]">12. Post-Launch</h3>
+                                    <ul class="list-disc list-inside text-gray-700 space-y-1 mt-2">
+                                        <li>Monitor Sales Funnel: Identify drop-off points.</li>
+                                        <li>Collect Reviews: Actively solicit customer reviews.</li>
+                                        <li>Inventory Management: Regularly update stock levels and monitor expiration dates.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-6">Task Distribution</h2>
+                        <p class="text-gray-600 mb-6">
+                            This chart provides an overview of where effort is concentrated across the entire project, based on the number of key tasks in each area.
+                        </p>
+                        <div class="chart-container">
+                            <canvas id="taskChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-structure" class="view-content hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-6">Product Categorization</h2>
+                        <p class="text-gray-600 mb-6">
+                            The store structure is designed to help users filter by their specific dietary needs and goals, making navigation intuitive and fast.
+                        </p>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Main Category</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subcategories</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Examples</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr><td class="px-6 py-4 font-semibold" colspan="3">1. Core Nutrition</td></tr>
+                                    <tr><td></td><td class="px-6 py-4">Proteins</td><td class="px-6 py-4">Protein powders, meal replacements</td></tr>
+                                    <tr><td></td><td class="px-6 py-4">Vitamins & Supplements</td><td class="px-6 py-4">Multi-vitamins, B-complex, Omega-3s</td></tr>
+                                    <tr><td></td><td class="px-6 py-4">Superfoods & Greens</td><td class="px-6 py-4">Spirulina, Ashwagandha</td></tr>
+
+                                    <tr><td class="px-6 py-4 font-semibold" colspan="3">2. Specialized Diets</td></tr>
+                                    <tr><td></td><td class="px-6 py-4">Keto & Low-Carb</td><td class="px-6 py-4">Snacks, baking mixes, oils</td></tr>
+                                    <tr><td></td><td class="px-6 py-4">Gluten-Free</td><td class="px-6 py-4">Breads, pasta, flours</td></tr>
+                                    <tr><td></td><td class="px-6 py-4">Vegan & Plant-Based</td><td class="px-6 py-4">Meat alternatives, dairy substitutes</td></tr>
+                                    
+                                    <tr><td class="px-6 py-4 font-semibold" colspan="3">3. Healthy Kitchen</td></tr>
+                                    <tr><td></td><td class="px-6 py-4">Oils & Vinegars</td><td class="px-6 py-4">Avocado oil, apple cider vinegar</td></tr>
+                                    <tr><td></td><td class="px-6 py-4">Sweeteners & Baking</td><td class="px-6 py-4">Stevia, monk fruit, almond flour</td></tr>
+                                    <tr><td></td><td class="px-6 py-4">Snacks & Bars</td><td class="px-6 py-4">Low-sugar bars, nuts, seeds</td></tr>
+
+                                    <tr><td class="px-6 py-4 font-semibold" colspan="3">4. Wellness & Lifestyle</td></tr>
+                                    <tr><td></td><td class="px-6 py-4">Teas & Beverages</td><td class="px-6 py-4">Herbal teas, functional drinks</td></tr>
+                                    <tr><td></td><td class="px-6 py-4">Fitness & Equipment</td><td class="px-6 py-4">Yoga mats, resistance bands</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-6">Essential Page Structure</h2>
+                        <p class="text-gray-600 mb-6">
+                            These core pages are the foundation of the user experience and are critical for building trust and driving conversions.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="task-card bg-gray-50 p-4 rounded-r-lg">
+                                <h3 class="font-semibold text-lg text-gray-800">1. Homepage</h3>
+                                <p class="text-gray-600">High-impact banner, New Arrivals, Bestsellers, "Shop by Diet" blocks (Keto, Vegan), Trust badges.</p>
+                            </div>
+                            <div class="task-card bg-gray-50 p-4 rounded-r-lg">
+                                <h3 class="font-semibold text-lg text-gray-800">2. Product Page (Crucial)</h3>
+                                <p class="text-gray-600">Must clearly display Nutritional Facts, Certifications (e.g., Organic), ingredients, and customer reviews.</p>
+                            </div>
+                            <div class="task-card bg-gray-50 p-4 rounded-r-lg">
+                                <h3 class="font-semibold text-lg text-gray-800">3. About Us</h3>
+                                <p class="text-gray-600">Focus on your mission, sourcing commitment, quality standards, and transparency.</p>
+                            </div>
+                            <div class="task-card bg-gray-50 p-4 rounded-r-lg">
+                                <h3 class="font-semibold text-lg text-gray-800">4. Blog / Resources</h3>
+                                <p class="text-gray-600">Content marketing hub. Example: "5 Easy Keto Dinner Recipes" or "Benefits of Ashwagandha".</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-brandtech" class="view-content hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-6">Brand Identity</h2>
+                        <p class="text-gray-600 mb-4">
+                            The brand identity is designed to convey **Trust, Purity, and Vitality** using a clean, minimalist theme and natural colors.
+                        </p>
+                        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
+                            <div class="rounded-lg p-4">
+                                <div class="w-16 h-16 rounded-full mx-auto shadow-inner" style="background-color: #1D703F;"></div>
+                                <h4 class="font-semibold mt-2">Primary</h4>
+                                <p class="text-sm text-gray-500">#1D703F</p>
+                            </div>
+                            <div class="rounded-lg p-4">
+                                <div class="w-16 h-16 rounded-full mx-auto shadow-inner" style="background-color: #87CBB9;"></div>
+                                <h4 class="font-semibold mt-2">Secondary</h4>
+                                <p class="text-sm text-gray-500">#87CBB9</p>
+                            </div>
+                            <div class="rounded-lg p-4">
+                                <div class="w-16 h-16 rounded-full mx-auto shadow-inner" style="background-color: #F08080;"></div>
+                                <h4 class="font-semibold mt-2">Accent</h4>
+                                <p class="text-sm text-gray-500">#F08080</p>
+                            </div>
+                            <div class="rounded-lg p-4">
+                                <div class="w-16 h-16 rounded-full mx-auto shadow-inner" style="background-color: #FFFFFF; border: 1px solid #eee;"></div>
+                                <h4 class="font-semibold mt-2">Neutral Base</h4>
+                                <p class="text-sm text-gray-500">#FFFFFF</p>
+                            </div>
+                            <div class="rounded-lg p-4">
+                                <div class="w-16 h-16 rounded-full mx-auto shadow-inner" style="background-color: #333333;"></div>
+                                <h4 class="font-semibold mt-2">Typography</h4>
+                                <p class="text-sm text-gray-500">#333333</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-6">Technology Stack</h2>
+                        <p class="text-gray-600 mb-6">
+                            This stack is recommended for a scalable and maintainable e-commerce operation, focusing on reliability and essential marketing features.
+                        </p>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Component</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Recommendation</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 font-semibold">E-commerce Platform</td>
+                                        <td class="px-6 py-4">Shopify (Recommended) or WooCommerce</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 font-semibold">Payment Gateway</td>
+                                        <td class="px-6 py-4">Stripe, PayPal, Local Bank Integration</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 font-semibold">ERP/Inventory</td>
+                                        <td class="px-6 py-4">Integrated App (e.g., Stocky for Shopify)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 font-semibold">Email Marketing</td>
+                                        <td class="px-6 py-4">Klaviyo or Mailchimp</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 font-semibold">Analytics</td>
+                                        <td class="px-6 py-4">Google Analytics 4 (GA4)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 font-semibold">High-Trust Features</td>
+                                        <td class="px-6 py-4">Subscription Model, Detailed Filtering, Loyalty Program</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const taskData = {
+                labels: [
+                    'Business & Legal', 
+                    'Branding', 
+                    'Financial', 
+                    'Platform Build', 
+                    'Product & Content', 
+                    'Shipping', 
+                    'QA & Compliance', 
+                    'Marketing', 
+                    'Launch & Post-Launch'
+                ],
+                datasets: [{
+                    label: 'Task Distribution',
+                    data: [3, 2, 2, 2, 3, 2, 3, 4, 3],
+                    backgroundColor: [
+                        '#1D703F', 
+                        '#87CBB9', 
+                        '#F08080', 
+                        '#333333',
+                        '#36A2EB', 
+                        '#FFCE56', 
+                        '#4BC0C0', 
+                        '#9966FF',
+                        '#FF9F40'  
+                    ],
+                    hoverOffset: 4
+                }]
+            };
+
+            const taskChartCtx = document.getElementById('taskChart').getContext('2d');
+            new Chart(taskChartCtx, {
+                type: 'doughnut',
+                data: taskData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 10,
+                                font: {
+                                    size: 10
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const mainNav = document.getElementById('mainNav');
+            const navButtons = mainNav.querySelectorAll('.nav-button');
+            const views = document.querySelectorAll('.view-content');
+
+            mainNav.addEventListener('click', (e) => {
+                const button = e.target.closest('.nav-button');
+                if (!button) return;
+
+                const targetView = button.dataset.view;
+
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                views.forEach(view => {
+                    if (view.id === `view-${targetView}`) {
+                        view.classList.remove('hidden');
+                    } else {
+                        view.classList.add('hidden');
+                    }
+                });
+            });
+
+            const phaseNav = document.getElementById('phase-nav');
+            const phaseButtons = phaseNav.querySelectorAll('.phase-button');
+            const phaseContents = document.querySelectorAll('.phase-content');
+
+            phaseNav.addEventListener('click', (e) => {
+                const button = e.target.closest('.phase-button');
+                if (!button) return;
+
+                const targetPhase = button.dataset.phase;
+
+                phaseButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                phaseContents.forEach(content => {
+                    if (content.id === `phase-${targetPhase}-tasks`) {
+                        content.classList.remove('hidden');
+                    } else {
+                        content.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

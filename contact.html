@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RE:SOURCE SYSTEMS | طلب تقييم الأثر</title>
+    <style>
+        /* ------------------------------------------- */
+        /* === 1. الأنماط الأساسية والحماية === */
+        /* ------------------------------------------- */
+        
+        /* === إصلاح الفوتر العايم (1) === */
+        html {
+            height: 100%;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            direction: rtl;
+            text-align: right;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            
+            /* === إصلاح الفوتر العايم (2) === */
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+        * {box-sizing: border-box}
+        
+        /* === إصلاح الفوتر العايم (3): رابر للمحتوى === */
+        .content-wrapper {
+            flex-grow: 1; /* الأهم: بيخلي المحتوى يكبر ويزق الفوتر لتحت */
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            /* تم تعديل المسافة العلوية لصفحة المحتوى */
+            padding: 40px 0 30px 0; 
+        }
+        
+        a:not(.download-link, .cta-button, header nav ul li a) {
+            pointer-events: none;
+            cursor: default;
+        }
+        img {
+            pointer-events: none;
+            -webkit-user-drag: none;
+            user-drag: none;
+        }
+        
+        /* ------------------------------------------- */
+        /* === 2. تنسيقات الهيدر الموحد === */
+        /* ------------------------------------------- */
+        header {
+            background: linear-gradient(to right, #0d47a1, #4CAF50);
+            color: #ffffff;
+            padding: 10px 50px; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center; 
+            position: sticky; 
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border-bottom: 4px solid #4CAF50;
+            flex-wrap: wrap; /* للسماح بالتفاف القائمة في الموبايل */
+        }
+
+        header img { order: 2; max-width: 120px; height: auto; margin: 0; display: block; }
+        header nav { order: 1; }
+        
+        header nav ul { list-style: none; padding: 0; margin: 0; display: flex; align-items: center; }
+        header nav ul li { margin: 0 15px; }
+        
+        header nav ul li a { 
+            color: #ffffff; 
+            text-decoration: none; 
+            font-weight: 500; 
+            transition: color 0.3s, border-color 0.3s;
+            padding-bottom: 5px; 
+            border-bottom: 2px solid transparent; 
+        }
+        
+        header nav ul li a:hover { 
+            color: #e65100; 
+            border-bottom-color: #e65100; 
+        }
+        
+        /* كود الرابط النشط لصفحة "اتصل بنا" */
+        header nav ul li a[href="contact.html"] {
+            color: #e65100; 
+            font-weight: 700; 
+            border-bottom-color: #e65100; 
+        }
+        
+        /* === 2.1: كود زر الهامبرجر (الجديد) === */
+        .menu-toggle {
+            display: none; /* مخفي على الكمبيوتر */
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            order: 1; /* لوضع الأيقونة يميناً (RTL) */
+            z-index: 1001;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #ffffff;
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+        /* === نهاية كود الهامبرجر === */
+
+        
+        /* ------------------------------------------- */
+        /* === 3. تنسيقات صفحة الاتصال === */
+        /* ------------------------------------------- */
+        section h3 {
+            text-align: center;
+            color: #0d47a1; 
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        
+        section p {
+            text-align: center;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .contact-form input,
+        .contact-form select,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .contact-form button {
+            margin-top: 20px;
+            padding: 12px 20px;
+            background-color: #4CAF50; 
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            pointer-events: auto; 
+        }
+
+        .contact-form button:hover {
+            background-color: #45a049;
+        }
+        
+        .contact-form button:disabled {
+            background-color: #9E9E9E; 
+            cursor: not-allowed;
+        }
+
+        /* ------------------------------------------- */
+        /* === 4. تنسيقات الفوتر الموحد === */
+        /* ------------------------------------------- */
+        footer { 
+            background-color: #263238; 
+            color: #ffffff; 
+            padding: 40px 0 20px 0; 
+            margin-top: 50px; 
+            font-size: 0.9em; 
+            /* === إصلاح الفوتر العايم (4) === */
+            flex-shrink: 0; /* يمنع الفوتر من الانكماش */
+        }
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            width: 85%; 
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #4f5b62; 
+        }
+        .footer-col { flex: 1; min-width: 220px; }
+        .footer-col h5 { color: #4CAF50; font-size: 1.3em; margin-top: 0; margin-bottom: 20px; }
+        .footer-col p { color: #ccc; line-height: 1.7; }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { color: #ffffff; text-decoration: none; transition: color 0.3s; pointer-events: auto; cursor: pointer; }
+        .footer-col ul li a:hover { color: #e65100; text-decoration: underline; }
+        .footer-copyright { text-align: center; padding-top: 20px; font-size: 0.9em; color: #ccc; }
+        
+        /* ------------------------------------------- */
+        /* === 5. تنسيقات الاستجابة (الموبايل) === */
+        /* ------------------------------------------- */
+        @media (max-width: 768px) {
+            
+            /* === 5.1: استجابة الهيدر (تم التعديل بالكامل) === */
+            header { 
+                flex-direction: row; 
+                justify-content: space-between; 
+                align-items: center;
+                padding: 10px 20px; 
+                flex-wrap: wrap; 
+            }
+            header img { 
+                order: 1; /* (1) اللوجو بقى يمين */
+                max-width: 100px; 
+                margin: 0; /* (2) شيلنا التوسيط */
+            } 
+            .menu-toggle {
+                display: block; 
+                order: 2; /* (3) الزرار بقى شمال */
+            }
+            
+            header nav { 
+                display: none; /* إخفاء القائمة افتراضياً */
+                order: 3; 
+                width: 100%; 
+                background: #2a3a40; 
+                padding: 10px 0;
+                margin-top: 10px; 
+                border-top: 1px solid #4CAF50;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            }
+            
+            header nav.nav-open {
+                display: block;
+            }
+
+            header nav ul { 
+                flex-direction: column; 
+                align-items: center; 
+                width: 100%; 
+            }
+            header nav ul li { 
+                margin: 10px 0; 
+                width: 100%;
+                text-align: center;
+            }
+            header nav ul li a { 
+                display: block; 
+                padding: 10px 0; 
+                border-bottom: none !important; 
+                width: 100%;
+            }
+            header nav ul li a:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+            header nav ul li a[href="contact.html"] {
+                 color: #e65100;
+                 font-weight: 700;
+            }
+            /* === نهاية تعديل الهيدر === */
+
+            
+            /* استجابة الأقسام */
+            .container {
+                width: 90%;
+                margin-top: 20px;
+            }
+            
+            /* استجابة الفوتر */
+            .footer-container { flex-direction: column; align-items: flex-start; }
+            .footer-col { margin-bottom: 20px; min-width: 100%; }
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;"> 
+
+    <div class="content-wrapper">
+        <header>
+            <button class="menu-toggle" id="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <img src="rs-logo-2.png" alt="RE:SOURCE SYSTEMS Logo">
+            
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="about.html">من نحن</a></li> 
+                    <li><a href="services.html">حلولنا الدائرية</a></li>
+                    <li><a href="contact.html">طلب تقييم الأثر</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="container">
+            <section id="contact">
+                <h3>طلب تقييم الأثر البيئي واللوجستي المجاني</h3>
+                <p>املأ النموذج أدناه ليتواصل معك فريق RE:SOURCE SYSTEMS. سنساعدك في تحليل تدفق نفايات المنسوجات الحالية لديك وتقدير أثر التحول إلى نموذج دائري.</p>
+
+                <form class="contact-form" id="contact-form">
+                    
+                    <label for="company_name">اسم الشركة:</label>
+                    <input type="text" id="company_name" name="company_name" required>
+
+                    <label for="contact_person">اسم جهة الاتصال (المسؤول عن الاستدامة/المشتريات):</label>
+                    <input type="text" id="contact_person" name="contact_person" required>
+                    
+                    <label for="email">البريد الإلكتروني المؤسسي:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="phone">رقم الهاتف:</label>
+                    <input type="text" id="phone" name="phone">
+
+                    <label for="material_type">النوع الأساسي للمادة المنسوجة المُراد التخلص منها:</label>
+                    <select id="material_type" name="material_type" required>
+                        <option value="">-- اختر النوع --</option>
+                        <option value="Uniforms">زي موحد (Uniforms)</option>
+                        <option value="Linens">مفروشات وأغطية (Linens)</option>
+                        <option value="Scraps">قصاصات ومخلفات تصنيع (Industrial Scraps)</option>
+                        <option value="Other">أخرى</option>
+                    </select>
+
+                    <label for="estimated_volume">حجم النفايات المقدر شهرياً (بالأطنان):</label>
+                    <input type="text" id="estimated_volume" name="estimated_volume" placeholder="مثال: 0.5 طن / 500 كجم">
+
+                    <label for="notes">ملاحظات إضافية (مثل: الموقع الجغرافي أو التحديات الحالية):</label>
+                    <textarea id="notes" name="notes" rows="4"></textarea>
+
+                    <button type="submit">إرسال الطلب وحجز التقييم</button>
+                </form>
+            </section>
+        </div>
+    </div> <footer>
+        <div class="footer-container">
+            
+            <div class="footer-col" style="flex: 1.5;"> <h5>عن RE:SOURCE SYSTEMS</h5>
+                <p>نحن شركاء الاستدامة للمؤسسات (B2B)، نبتكر حلولاً لوجستية وتكنولوجية لسد الفجوة في الاقتصاد الدائري للمنسوجات وتحويل النفايات إلى قيمة موثقة.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h5>روابط سريعة</h5>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="about.html">من نحن (الرؤية والرسالة)</a></li>
+                    <li><a href="services.html">حلولنا الدائرية</a></li>
+                    <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h5>تواصل معنا</h5>
+                <ul>
+                    <li><a href="contact.html">اطلب تقييم الأثر الآن (مجاني)</a></li>
+                    <li><a href="mailto:info@resourcesystems.com" style="pointer-events: auto;">info@resourcesystems.com</a></li>
+                    </ul>
+            </div>
+
+        </div>
+        
+        <div class="footer-copyright">
+            &copy; 2025 RE:SOURCE SYSTEMS. جميع الحقوق محفوظة. بناء حلول مستدامة بأقل تكلفة.
+        </div>
+    </footer>
+    
+    <script>
+        // === 6.1: كود الحماية من النسخ ===
+        document.onkeydown = function(e) {
+            if (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83 || e.keyCode === 65 || e.keyCode === 67)) {
+                return false;
+            }
+        };
+
+        // === 6.2: كود ربط الفورم بجوجل شيت (كما هو) ===
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw6keongbMp9SPRZfVKrkQiNC76BazjlYxCULsQoWD1tMyKALpk8DMVqypNGHpnWpNltw/exec";
+        const form = document.getElementById('contact-form');
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.textContent;
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); 
+            submitButton.disabled = true;
+            submitButton.textContent = '...جاري الإرسال';
+            const formData = new FormData(form);
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.result === 'success') {
+                    form.reset(); 
+                    submitButton.textContent = '✅ تم الإرسال بنجاح!';
+                    
+                    setTimeout(() => {
+                        submitButton.textContent = originalButtonText;
+                        submitButton.disabled = false;
+                    }, 3000);
+                } else {
+                    throw new Error(data.message || 'Unknown error');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                submitButton.textContent = '❌ حدث خطأ، حاول مرة أخرى';
+                submitButton.disabled = false;
+            });
+        });
+
+        // === 6.3: كود قائمة الموبايل (الجديد) ===
+        const menuButton = document.getElementById('mobile-menu-button');
+        const navMenu = document.getElementById('main-nav');
+
+        menuButton.addEventListener('click', () => {
+            // فتح/قفل القائمة
+            navMenu.classList.toggle('nav-open');
+            
+            // تحديث حالة الزرار (للقارئات المساعدة)
+            const isExpanded = navMenu.classList.contains('nav-open');
+            menuButton.setAttribute('aria-expanded', isExpanded);
+        });
+    </script>
+</body>
+</html>

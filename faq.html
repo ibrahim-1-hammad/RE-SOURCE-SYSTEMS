@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RE:SOURCE SYSTEMS | الأسئلة الشائعة (FAQ)</title>
+    <style>
+        /* ------------------------------------------- */
+        /* === 1. الأنماط الأساسية والحماية === */
+        /* ------------------------------------------- */
+        
+        /* === إصلاح الفوتر العايم (1) === */
+        html {
+            height: 100%;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            direction: rtl;
+            text-align: right;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            
+            /* === إصلاح الفوتر العايم (2) === */
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+        * {box-sizing: border-box}
+        
+        /* === إصلاح الفوتر العايم (3): رابر للمحتوى === */
+        .content-wrapper {
+            flex-grow: 1; /* الأهم: بيخلي المحتوى يكبر ويزق الفوتر لتحت */
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 0 30px 0;
+        }
+        
+        a:not(.download-link, .cta-button, header nav ul li a) {
+            pointer-events: none;
+            cursor: default;
+        }
+        img {
+            pointer-events: none;
+            -webkit-user-drag: none;
+            user-drag: none;
+        }
+        
+        /* ------------------------------------------- */
+        /* === 2. تنسيقات الهيدر الموحد === */
+        /* ------------------------------------------- */
+        header {
+            background: linear-gradient(to right, #0d47a1, #4CAF50);
+            color: #ffffff;
+            padding: 10px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center; 
+            position: sticky; 
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border-bottom: 4px solid #4CAF50;
+            flex-wrap: wrap; /* للسماح بالتفاف القائمة في الموبايل */
+        }
+
+        header img { order: 2; max-width: 120px; height: auto; margin: 0; display: block; }
+        header nav { order: 1; }
+        
+        header nav ul { list-style: none; padding: 0; margin: 0; display: flex; align-items: center; }
+        header nav ul li { margin: 0 15px; }
+        
+        header nav ul li a { 
+            color: #ffffff; 
+            text-decoration: none; 
+            font-weight: 500; 
+            transition: color 0.3s, border-color 0.3s;
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
+        }
+        
+        header nav ul li a:hover { 
+            color: #e65100; 
+            border-bottom-color: #e65100;
+        }
+        
+        /* لا يوجد رابط نشط لهذه الصفحة في الهيدر */
+        
+        /* === 2.1: كود زر الهامبرجر (الجديد) === */
+        .menu-toggle {
+            display: none; /* مخفي على الكمبيوتر */
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            order: 1; /* لوضع الأيقونة يميناً (RTL) */
+            z-index: 1001;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #ffffff;
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+        /* === نهاية كود الهامبرجر === */
+        
+        /* ------------------------------------------- */
+        /* === 3. تنسيق قسم الأسئلة الشائعة === */
+        /* ------------------------------------------- */
+        section h3 {
+            color: #0d47a1; 
+            font-size: 2em; 
+            border-bottom: 3px solid #e65100; 
+            display: inline-block; 
+            padding-bottom: 5px; 
+            margin-bottom: 30px;
+        }
+
+        .faq-item {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            overflow: hidden; 
+        }
+        
+        .faq-question {
+            background-color: #f9f9f9;
+            padding: 20px 25px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .faq-question h4 {
+            color: #e65100; 
+            font-size: 1.4em;
+            margin: 0;
+        }
+
+        .faq-answer {
+            padding: 20px 25px;
+            font-size: 1.1em;
+            line-height: 1.7;
+        }
+        
+        /* زر CTA */
+        .cta-button {
+            display: inline-block;
+            background-color: #e65100;
+            color: #ffffff !important;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            pointer-events: auto;
+        }
+        .cta-button:hover { 
+            background-color: #ff8f00; 
+        }
+
+        /* ------------------------------------------- */
+        /* === 4. تنسيقات الفوتر الموحد === */
+        /* ------------------------------------------- */
+        footer { 
+            background-color: #263238; 
+            color: #ffffff; 
+            padding: 40px 0 20px 0; 
+            margin-top: 50px; 
+            font-size: 0.9em; 
+            /* === إصلاح الفوتر العايم (4) === */
+            flex-shrink: 0; /* يمنع الفوتر من الانكماش */
+        }
+        
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            width: 85%; 
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #4f5b62; 
+        }
+
+        .footer-col {
+            flex: 1; 
+            min-width: 220px; 
+        }
+        
+        .footer-col h5 {
+            color: #4CAF50; 
+            font-size: 1.3em;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        
+        .footer-col p {
+            color: #ccc; 
+            line-height: 1.7;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #ffffff; 
+            text-decoration: none;
+            transition: color 0.3s;
+            pointer-events: auto; 
+            cursor: pointer;
+        }
+        
+        .footer-col ul li a:hover {
+            color: #e65100; 
+            text-decoration: underline;
+        }
+
+        .footer-copyright {
+            text-align: center;
+            padding-top: 20px;
+            font-size: 0.9em;
+            color: #ccc;
+        }
+        
+        /* ------------------------------------------- */
+        /* === 5. تنسيقات الاستجابة (الموبايل) === */
+        /* ------------------------------------------- */
+        @media (max-width: 768px) {
+            
+            /* === 5.1: استجابة الهيدر (تم التعديل بالكامل) === */
+            header { 
+                flex-direction: row; 
+                justify-content: space-between; 
+                align-items: center;
+                padding: 10px 20px; 
+                flex-wrap: wrap; 
+            }
+            header img { 
+                order: 1; /* (1) اللوجو بقى يمين */
+                max-width: 100px; 
+                margin: 0; /* (2) شيلنا التوسيط */
+            } 
+            .menu-toggle {
+                display: block; 
+                order: 2; /* (3) الزرار بقى شمال */
+            }
+            
+            header nav { 
+                display: none; /* إخفاء القائمة افتراضياً */
+                order: 3; 
+                width: 100%; 
+                background: #2a3a40; 
+                padding: 10px 0;
+                margin-top: 10px; 
+                border-top: 1px solid #4CAF50;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            }
+            
+            /* كلاس .nav-open (يتم إضافته بـ JavaScript) */
+            header nav.nav-open {
+                display: block;
+            }
+
+            header nav ul { 
+                flex-direction: column; 
+                align-items: center; 
+                width: 100%; 
+            }
+            header nav ul li { 
+                margin: 10px 0; 
+                width: 100%;
+                text-align: center;
+            }
+            header nav ul li a { 
+                display: block; 
+                padding: 10px 0; 
+                border-bottom: none !important; 
+                width: 100%;
+            }
+            header nav ul li a:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+            /* لا يوجد رابط نشط هنا */
+            
+            /* === نهاية تعديل الهيدر === */
+            
+            /* استجابة الفوتر */
+            .footer-container {
+                flex-direction: column;
+                align-items: flex-start; 
+            }
+            .footer-col {
+                margin-bottom: 20px;
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;"> 
+
+    <div class="content-wrapper">
+        <header>
+            <button class="menu-toggle" id="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <img src="rs-logo-2.png" alt="RE:SOURCE SYSTEMS Logo">
+            
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="about.html">من نحن</a></li> 
+                    <li><a href="services.html">حلولنا الدائرية</a></li>
+                    <li><a href="contact.html">طلب تقييم الأثر</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="container">
+            <section id="faq-section">
+                <h3>الأسئلة الشائعة (FAQ)</h3>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>1. ما هو نموذج التسعير؟ هل الخدمة مجانية؟</h4>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نموذجنا يعتمد على الكمية والنوعية. في كثير من الحالات، تكون الخدمة مجانية بالكامل أو بتكلفة لوجستية رمزية، وهي دائماً أوفر من تكاليف الدفن التقليدية. هدفنا هو خلق قيمة من النفايات، وليس إضافة تكلفة. اطلب تقييم مجاني لنحدد العرض الأنسب لك.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>2. كيف أضمن أن المنسوجات تذهب لإعادة التدوير فعلاً؟</h4>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نحن نقدم شفافية كاملة. ستحصل على "شهادة تحويل" (Certificate of Diversion) وتقارير أثر دورية توثق كل كيلو جرام تم جمعه، ومساره، وكمية الـ CO2 التي تم توفيرها. هذه التقارير موجهة مباشرة لتقارير الاستدامة (ESG) الخاصة بك.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>3. ما هو الحد الأدنى للكميات التي تقومون بجمعها؟</h4>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نحن متخصصون في الشراكات المؤسسية (B2B). الحد الأدنى يعتمد على الموقع الجغرافي ونوع المادة، لكننا عادةً نتعامل مع المؤسسات التي تنتج ما لا يقل عن 200-300 كجم شهرياً. التقييم المجاني يحدد أفضل جدول لوجستي لك.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>4. ما المطلوب منا كفندق أو مستشفى؟</h4>
+                    </div>
+                    <div class="faq-answer">
+                        <p>القليل جداً. نحن نوفر الحاويات المخصصة للجمع. كل ما نطلبه من فريقك هو وضع المنسوجات المحددة (مثل الزي الموحد القديم، المفروشات التالفة) في هذه الحاويات بدلاً من القمامة العادية. فريقنا يتولى الباقي، من الجمع المجدول إلى إصدار التقارير.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>5. هل تقبلون كل أنواع الأقمشة؟</h4>
+                    </div>
+                    <div class="faq-answer">
+                        <p>تركيزنا الأساسي على الألياف القابلة لإعادة التدوير بكميات كبيرة مثل القطن والبوليستر (الموجودة في الزي الموحد والمفروشات). قد لا نتمكن من قبول المواد المختلطة بشدة أو الملوثة بمواد خطرة. التقييم المجاني يحدد هذا بدقة.</p>
+                    </div>
+                </div>
+                
+                <p style="text-align: center; margin-top: 40px;">
+                    <a href="contact.html" class="cta-button">هل لديك سؤال آخر؟ تواصل معنا</a>
+                </p>
+
+            </section>
+        </div>
+    </div> <footer>
+        <div class="footer-container">
+            
+            <div class="footer-col" style="flex: 1.5;"> <h5>عن RE:SOURCE SYSTEMS</h5>
+                <p>نحن شركاء الاستدامة للمؤسسات (B2B)، نبتكر حلولاً لوجستية وتكنولوجية لسد الفجوة في الاقتصاد الدائري للمنسوجات وتحويل النفايات إلى قيمة موثقة.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h5>روابط سريعة</h5>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="about.html">من نحن (الرؤية والرسالة)</a></li>
+                    <li><a href="services.html">حلولنا الدائرية</a></li>
+                    <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h5>تواصل معنا</h5>
+                <ul>
+                    <li><a href="contact.html">اطلب تقييم الأثر الآن (مجاني)</a></li>
+                    <li><a href="mailto:info@resourcesystems.com" style="pointer-events: auto;">info@resourcesystems.com</a></li>
+                    </ul>
+            </div>
+
+        </div>
+        
+        <div class="footer-copyright">
+            &copy; 2025 RE:SOURCE SYSTEMS. جميع الحقوق محفوظة. بناء حلول مستدامة بأقل تكلفة.
+        </div>
+    </footer>
+    
+    <script>
+        // --- كود الحماية ---
+        document.onkeydown = function(e) {
+            if (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83 || e.keyCode === 65 || e.keyCode === 67)) {
+                return false;
+            }
+        };
+
+        // --- كود قائمة الموبايل (الجديد) ---
+        const menuButton = document.getElementById('mobile-menu-button');
+        const navMenu = document.getElementById('main-nav');
+
+        menuButton.addEventListener('click', () => {
+            // فتح/قفل القائمة
+            navMenu.classList.toggle('nav-open');
+            
+            // تحديث حالة الزرار (للقارئات المساعدة)
+            const isExpanded = navMenu.classList.contains('nav-open');
+            menuButton.setAttribute('aria-expanded', isExpanded);
+        });
+    </script>
+</body>
+</html>

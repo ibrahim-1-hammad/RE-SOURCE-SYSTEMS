@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RE:SOURCE SYSTEMS | من نحن (الرؤية والرسالة)</title>
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <style>
+        /* ------------------------------------------- */
+        /* === 1. الأنماط الأساسية والحماية === */
+        /* ------------------------------------------- */
+        
+        /* === إصلاح الفوتر العايم (1) === */
+        html {
+            height: 100%;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            direction: rtl;
+            text-align: right;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            
+            /* === إصلاح الفوتر العايم (2) === */
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+        * {box-sizing: border-box}
+        
+        /* === إصلاح الفوتر العايم (3): رابر للمحتوى === */
+        .content-wrapper {
+            flex-grow: 1; /* الأهم: بيخلي المحتوى يكبر ويزق الفوتر لتحت */
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            /* === تم تعديل المسافة العلوية لصفحة المحتوى === */
+            padding: 40px 0 30px 0;
+        }
+        
+        /* حماية: منع نسخ الروابط والـ URLs وتنزيل الصور في كل مكان */
+        a:not(.download-link, .cta-button, header nav ul li a, .card a) {
+            pointer-events: none;
+            cursor: default;
+        }
+        /* السماح بالضغط على الكروت */
+        .card a {
+            pointer-events: auto !important;
+            cursor: pointer !important;
+        }
+        
+        img {
+            pointer-events: none;
+            -webkit-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+        }
+        
+        /* ------------------------------------------- */
+        /* === 2. تنسيقات الهيدر الموحد === */
+        /* ------------------------------------------- */
+        header {
+            background: linear-gradient(to right, #0d47a1, #4CAF50);
+            color: #ffffff;
+            padding: 10px 50px; /* الهيدر الرفيع */
+            display: flex;
+            justify-content: space-between;
+            align-items: center; 
+            position: sticky; 
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border-bottom: 4px solid #4CAF50;
+            flex-wrap: wrap; /* للسماح بالتفاف القائمة في الموبايل */
+        }
+
+        /* اللوجو في اليسار والقائمة في اليمين (RTL) */
+        header img { order: 2; max-width: 120px; height: auto; margin: 0; display: block; }
+        header nav { order: 1; }
+        
+        header nav ul { list-style: none; padding: 0; margin: 0; display: flex; align-items: center; }
+        header nav ul li { margin: 0 15px; }
+        
+        header nav ul li a { 
+            color: #ffffff; 
+            text-decoration: none; 
+            font-weight: 500; 
+            transition: color 0.3s, border-color 0.3s;
+            padding-bottom: 5px; /* مسافة للخط السفلي */
+            border-bottom: 2px solid transparent; /* خط سفلي شفاف */
+        }
+        
+        header nav ul li a:hover { 
+            color: #e65100; 
+            border-bottom-color: #e65100; /* إظهار الخط عند الهوفر */
+        }
+        
+        /* === تم التعديل: تنسيق الرابط النشط (لصفحة "من نحن") === */
+        header nav ul li a[href="about.html"] {
+            color: #e65100; /* اللون البرتقالي المميز */
+            font-weight: 700; /* أثقل */
+            border-bottom-color: #e65100; /* الخط السفلي ظاهر دائما */
+        }
+        
+        /* === 2.1: كود زر الهامبرجر (الجديد) === */
+        .menu-toggle {
+            display: none; /* مخفي على الكمبيوتر */
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            order: 1; /* لوضع الأيقونة يميناً (RTL) */
+            z-index: 1001;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #ffffff;
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+        /* === نهاية كود الهامبرجر === */
+
+        
+        /* ------------------------------------------- */
+        /* === 3. تنسيق الأقسام الداخلية (Responsive) === */
+        /* ------------------------------------------- */
+        section {
+            margin-bottom: 40px;
+        }
+        
+        section h3 {
+            color: #0d47a1; font-size: 2em; border-bottom: 3px solid #e65100; display: inline-block; padding-bottom: 5px; margin-bottom: 30px;
+        }
+        
+        /* === 3.1: أنماط الكروت الجديدة (Card Style) === */
+        .features { 
+            display: flex;
+            justify-content: center; /* توسيط الكروت */
+            gap: 30px; 
+            text-align: right; 
+            margin-bottom: 40px; 
+            flex-wrap: wrap; /* السماح بالتفاف الكروت */
+        }
+        
+        .card-container {
+            flex-basis: 300px; /* عرض أساسي للكارت */
+            margin: 20px; /* مسافات */
+        }
+        
+        .card {
+            font-weight: bold;
+            position: relative;
+            width: 100%;
+        }
+
+        .card a {
+            padding: 30px;
+            width: 100%;
+            height: 400px; /* ارتفاع ثابت */
+            border: 2px solid #0d47a1; /* الهوية: أزرق */
+            background: white;
+            text-decoration: none;
+            color: black;
+            display: block;
+            transition: 0.25s ease;
+        }
+
+        .card a:hover {
+            transform: translate(-20px, -20px); /* تأثير الـ Pop-out */
+            border-color: #4CAF50; /* الهوية: أخضر */
+        }
+        
+        .card a:hover .card--display {
+            display: none;
+        }
+
+        .card a:hover .card--hover {
+            display: block;
+        }
+
+        .card .card--display {
+            text-align: center; /* توسيط الأيقونة والعنوان */
+        }
+        
+        .card .card--display i {
+            font-size: 60px;
+            margin-top: 150px; /* مسافة من الأعلى */
+            color: #0d47a1; /* الهوية: أزرق */
+        }
+        
+        .card .card--display h2 {
+            margin: 20px 0 0;
+            color: #333;
+            font-size: 1.4em;
+        }
+
+        .card .card--hover {
+            display: none; /* مخفي افتراضياً */
+        }
+
+        .card .card--hover h2 {
+            margin: 20px 0;
+            color: #0d47a1; /* الهوية: أزرق */
+            font-size: 1.4em;
+        }
+
+        .card .card--hover p {
+            font-weight: normal;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        /* تنسيق "القيمة للعميل" */
+        .card .card--hover p.link {
+            margin: 20px 0 0;
+            font-weight: bold;
+            color: #e65100; /* الهوية: برتقالي */
+        }
+
+        .card .card--border {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            border: 2px dashed #0d47a1; /* الهوية: أزرق */
+            z-index: -1;
+        }
+        /* === نهاية أنماط الكروت === */
+
+
+        /* تنسيق الفقرة التقديمية */
+        .intro-paragraph {
+            font-size: 1.2em;
+            line-height: 1.7;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 40px auto;
+            color: #555;
+        }
+        
+        /* زر CTA */
+        .cta-button {
+            display: inline-block;
+            background-color: #e65100;
+            color: #ffffff !important; /* ضمان أن النص أبيض */
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            pointer-events: auto; /* السماح بالضغط عليه */
+        }
+        .cta-button:hover { 
+            background-color: #ff8f00; 
+        }
+
+        /* ------------------------------------------- */
+        /* === 4. تنسيقات الفوتر الموحد === */
+        /* ------------------------------------------- */
+        footer { 
+            background-color: #263238; 
+            color: #ffffff; 
+            padding: 40px 0 20px 0; 
+            margin-top: 50px; 
+            font-size: 0.9em; 
+            /* === إصلاح الفوتر العايم (4) === */
+            flex-shrink: 0; /* يمنع الفوتر من الانكماش */
+        }
+        
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            width: 85%; /* نفس عرض .container */
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #4f5b62; /* خط فاصل */
+        }
+
+        .footer-col {
+            flex: 1; /* كل عمود ياخد مساحة متساوية */
+            min-width: 220px; /* أقل عرض قبل ما ينزلوا تحت بعض */
+        }
+        
+        .footer-col h5 {
+            color: #4CAF50; /* أخضر */
+            font-size: 1.3em;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        
+        .footer-col p {
+            color: #ccc; /* رمادي فاتح */
+            line-height: 1.7;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        /* تنسيق الروابط داخل الفوتر */
+        .footer-col ul li a {
+            color: #ffffff; /* أبيض */
+            text-decoration: none;
+            transition: color 0.3s;
+            pointer-events: auto; 
+            cursor: pointer;
+        }
+        
+        .footer-col ul li a:hover {
+            color: #e65100; /* برتقالي عند الهوفر */
+            text-decoration: underline;
+        }
+
+        .footer-copyright {
+            text-align: center;
+            padding-top: 20px;
+            font-size: 0.9em;
+            color: #ccc;
+        }
+        
+        /* ------------------------------------------- */
+        /* === 5. تنسيقات الاستجابة (الموبايل) === */
+        /* ------------------------------------------- */
+        @media (max-width: 768px) {
+            
+            /* استجابة الفوتر */
+            .footer-container {
+                flex-direction: column;
+                align-items: flex-start; /* محاذاة لليمين (RTL) */
+            }
+            .footer-col {
+                margin-bottom: 20px;
+                min-width: 100%;
+            }
+            
+            /* استجابة الأقسام */
+            .features { flex-direction: column; }
+            
+            /* === 5.1: استجابة الهيدر (تم التعديل بالكامل) === */
+            header { 
+                flex-direction: row; 
+                justify-content: space-between; 
+                align-items: center;
+                padding: 10px 20px; 
+                flex-wrap: wrap; 
+            }
+            header img { 
+                order: 1; /* (1) اللوجو بقى يمين */
+                max-width: 100px; 
+                margin: 0; /* (2) شيلنا التوسيط */
+            } 
+            .menu-toggle {
+                display: block; 
+                order: 2; /* (3) الزرار بقى شمال */
+            }
+            
+            header nav { 
+                display: none; /* إخفاء القائمة افتراضياً */
+                order: 3; 
+                width: 100%; 
+                background: #2a3a40; 
+                padding: 10px 0;
+                margin-top: 10px; 
+                border-top: 1px solid #4CAF50;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            }
+            
+            /* كلاس .nav-open (يتم إضافته بـ JavaScript) */
+            header nav.nav-open {
+                display: block;
+            }
+
+            header nav ul { 
+                flex-direction: column; 
+                align-items: center; 
+                width: 100%; 
+            }
+            header nav ul li { 
+                margin: 10px 0; 
+                width: 100%;
+                text-align: center;
+            }
+            header nav ul li a { 
+                display: block; 
+                padding: 10px 0; 
+                border-bottom: none !important; 
+                width: 100%;
+            }
+            header nav ul li a:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+            
+            /* الخط النشط لصفحة "من نحن" في الموبايل */
+            header nav ul li a[href="about.html"] {
+                 color: #e65100;
+                 font-weight: 700;
+            }
+            /* === نهاية تعديل الهيدر === */
+        }
+
+    </style>
+</head>
+<body oncontextmenu="return false;"> 
+
+    <div class="content-wrapper">
+        <header>
+            <button class="menu-toggle" id="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <img src="rs-logo-2.png" alt="RE:SOURCE SYSTEMS Logo">
+            
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="about.html">من نحن</a></li> 
+                    <li><a href="services.html">حلولنا الدائرية</a></li>
+                    <li><a href="contact.html">طلب تقييم الأثر</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="container">
+            <section id="about-us">
+                <h3>عن RE:SOURCE SYSTEMS: قيادة التحول الدائري</h3>
+                
+                <p class="intro-paragraph">
+                    نحن لسنا مجرد شركة لإدارة النفايات. نحن شركاء في الاستدامة، نبتكر حلولاً لوجستية وتكنولوجية لسد الفجوة في الاقتصاد الدائري للمنسوجات.
+                </p>
+
+                <div class="features">
+                    
+                    <div class="card-container">
+                        <div class="card">
+                            <a href="#">
+                                <div class="card--display">
+                                    <i class="material-icons">visibility</i>
+                                    <h2>رؤيتنا (Our Vision)</h2>
+                                </div>
+                                <div class="card--hover">
+                                    <h2>رؤيتنا (Our Vision)</h2>
+                                    <p>أن نكون القوة الدافعة وراء عالم تصبح فيه "نفايات المنسوجات" مفهوماً قديماً، حيث يتم إعادة تدوير كل ليف واستخدامه بكفاءة، مما يخلق قيمة اقتصادية وبيئية مستدامة للأجيال القادمة.</p>
+                                </div>
+                            </a>
+                            <div class="card--border"></div>
+                        </div>
+                    </div>
+
+                    <div class="card-container">
+                        <div class="card">
+                            <a href="#">
+                                <div class="card--display">
+                                    <i class="material-icons">track_changes</i>
+                                    <h2>رسالتنا (Our Mission)</h2>
+                                </div>
+                                <div class="card--hover">
+                                    <h2>رسالتنا (Our Mission)</h2>
+                                    <p>تزويد شركائنا (B2B) بأكثر الأنظمة شفافية وكفاءة من الناحية اللوجستية لجمع وتحويل المنسوجات المهملة، وتحويلها من عبء تشغيلي إلى مورد قيم وموثق يدعم أهدافهم في الامتثال البيئي والاجتماعي (ESG).</p>
+                                </div>
+                            </a>
+                            <div class="card--border"></div>
+                        </div>
+                    </div>
+
+                    <div class="card-container">
+                        <div class="card">
+                            <a href="#">
+                                <div class="card--display">
+                                    <i class="material-icons">verified</i>
+                                    <h2>قيمنا (Our Values)</h2>
+                                </div>
+                                <div class="card--hover">
+                                    <h2>قيمنا (Our Values)</h2>
+                                    <p><strong>الشفافية:</strong> نوثق كل خطوة في رحلة المواد.<br>
+                                       <strong>الابتكار:</strong> نستخدم التكنولوجيا لتحسين اللوجستيات وخفض الانبعاثات.<br>
+                                       <strong>الشراكة:</strong> نجاحنا يُبنى على نجاح شركائنا في تحقيق الاستدامة.</p>
+                                </div>
+                            </a>
+                            <div class="card--border"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <p style="text-align: center; margin-top: 30px;">
+                    <a href="services.html" class="cta-button">اكتشف حلولنا الدائرية</a>
+                </p>
+                
+            </section>
+        </div>
+    </div> <footer>
+        <div class="footer-container">
+            
+            <div class="footer-col" style="flex: 1.5;"> <h5>عن RE:SOURCE SYSTEMS</h5>
+                <p>نحن شركاء الاستدامة للمؤسسات (B2B)، نبتكر حلولاً لوجستية وتكنولوجية لسد الفجوة في الاقتصاد الدائري للمنسوجات وتحويل النفايات إلى قيمة موثقة.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h5>روابط سريعة</h5>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="about.html">من نحن (الرؤية والرسالة)</a></li>
+                    <li><a href="services.html">حلولنا الدائرية</a></li>
+                    <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h5>تواصل معنا</h5>
+                <ul>
+                    <li><a href="contact.html">اطلب تقييم الأثر الآن (مجاني)</a></li>
+                    <li><a href="mailto:info@resourcesystems.com" style="pointer-events: auto;">info@resourcesystems.com</a></li>
+                    </ul>
+            </div>
+
+        </div>
+        
+        <div class="footer-copyright">
+            &copy; 2025 RE:SOURCE SYSTEMS. جميع الحقوق محفوظة. بناء حلول مستدامة بأقل تكلفة.
+        </div>
+    </footer>
+    
+    <script>
+        // --- كود الحماية ---
+        document.onkeydown = function(e) {
+            // تعطيل Ctrl+U, Ctrl+S, Ctrl+A, Ctrl+C
+            if (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83 || e.keyCode === 65 || e.keyCode === 67)) {
+                return false;
+            }
+        };
+
+        // --- كود قائمة الموبايل (الجديد) ---
+        const menuButton = document.getElementById('mobile-menu-button');
+        const navMenu = document.getElementById('main-nav');
+
+        menuButton.addEventListener('click', () => {
+            // فتح/قفل القائمة
+            navMenu.classList.toggle('nav-open');
+            
+            // تحديث حالة الزرار (للقارئات المساعدة)
+            const isExpanded = navMenu.classList.contains('nav-open');
+            menuButton.setAttribute('aria-expanded', isExpanded);
+        });
+    </script>
+</body>
+</html>

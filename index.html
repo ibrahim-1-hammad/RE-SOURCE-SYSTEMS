@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/rs-logo-2.png type="image/x-icon">
+    <title>RE:SOURCE SYSTEMS | ثورة المنسوجات الدائرية </title>
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <style>
+        /* ------------------------------------------- */
+        /* === 1. الأنماط الأساسية والحماية === */
+        /* ------------------------------------------- */
+        
+        /* === إصلاح الفوتر العايم (1) === */
+        html {
+            height: 100%;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            direction: rtl;
+            text-align: right;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            
+            /* === إصلاح الفوتر العايم (2) === */
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+        * {box-sizing: border-box}
+        
+        /* === إصلاح الفوتر العايم (3): رابر للمحتوى === */
+        .content-wrapper {
+            flex-grow: 1; /* الأهم: بيخلي المحتوى يكبر ويزق الفوتر لتحت */
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 0;
+        }
+        
+        /* تم تعديل السماحيات للكروت الجديدة */
+        a:not(.download-link, .cta-button, header nav ul li a, .card a) {
+            pointer-events: none;
+            cursor: default;
+        }
+        .card a {
+             pointer-events: auto !important; 
+             cursor: pointer !important;
+        }
+        
+        img {
+            pointer-events: none;
+            -webkit-user-drag: none;
+                   }
+        
+        /* ------------------------------------------- */
+        /* === 2. تنسيقات الهيدر الموحد === */
+        /* ------------------------------------------- */
+        header {
+            background: linear-gradient(to right, #0d47a1, #4CAF50);
+            color: #ffffff;
+            padding: 10px 50px; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center; 
+            position: sticky; 
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border-bottom: 4px solid #4CAF50;
+            flex-wrap: wrap; 
+        }
+
+        header img { order: 2; max-width: 120px; height: auto; margin: 0; display: block; }
+        header nav { order: 1; }
+        
+        header nav ul { list-style: none; padding: 0; margin: 0; display: flex; align-items: center; }
+        header nav ul li { margin: 0 15px; }
+        
+        header nav ul li a { 
+            color: #ffffff; 
+            text-decoration: none; 
+            font-weight: 500; 
+            transition: color 0.3s, border-color 0.3s;
+            padding-bottom: 5px; 
+            border-bottom: 2px solid transparent; 
+        }
+        
+        header nav ul li a:hover { 
+            color: #e65100; 
+            border-bottom-color: #e65100; 
+        }
+        
+        header nav ul li a[href="index.html"] {
+            color: #e65100; 
+            font-weight: 700; 
+            border-bottom-color: #e65100; 
+        }
+        
+        .menu-toggle {
+            display: none; 
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            order: 1; 
+            z-index: 1001;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #ffffff;
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+        
+        /* ------------------------------------------- */
+        /* === 3. تنسيقات السلايدر (كما هي من عندك) === */
+        /* ------------------------------------------- */
+        .slideshow-container {
+            max-width: 100%; 
+            position: relative;
+        }
+
+        .mySlides {
+            display: none;
+            min-height: 500px; 
+            background: linear-gradient(to right, #0d47a1, #4CAF50);
+        }
+        
+        /* تم حذف القاعدة الفارغة .mySlides img */
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            z-index: 10; 
+        }
+
+        .next {left: 0; border-radius: 3px 0 0 3px;}
+        .prev {right: 0; border-radius: 0 3px 3px 0;}
+        .prev:hover, .next:hover {background: linear-gradient(to right, #0d47a1, #4CAF50);}
+        
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+            z-index: 5; 
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+        }
+        
+        .dots-container {
+            text-align: center;
+            padding: 20px;
+            background-color: #f4f7f6; 
+        }
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+        .active, .dot:hover {background-color: #717171;}
+        .fade {animation-name: fade; animation-duration: 1.5s;}
+        @keyframes fade {from {opacity: .4} to {opacity: 1}}
+        
+        .slide-content {
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px 40px;
+            position: absolute;
+            bottom: 80px; 
+            width: 100%;
+            text-align: center;
+            z-index: 2; 
+        }
+        .slide-content h2 {
+            font-size: 2.8em;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #FFFFFF !important;
+        }
+        .slide-content p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #FFFFFF !important;
+            line-height: 1.6;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #e65100;
+            color: #ffffff !important; 
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            pointer-events: auto; 
+            cursor: pointer;
+        }
+        .cta-button:hover { background-color: #ff8f00; }
+        
+        /* ------------------------------------------- */
+        /* === 4. تنسيقات أقسام الصفحة الداخلية === */
+        /* ------------------------------------------- */
+        section h3 {
+            color: #0d47a1; font-size: 2em; border-bottom: 3px solid #e65100; display: inline-block; padding-bottom: 5px; margin-bottom: 30px;
+        }
+        
+        /* === تم حذف .features و .feature-box القديمة === */
+
+        /* === 4.1: أنماط الكروت الجديدة (Card Style) === */
+        .features { 
+            display: flex;
+            justify-content: center; /* توسيط الكروت */
+            gap: 20px; 
+            text-align: right; 
+            margin-bottom: 20px; 
+            flex-wrap: wrap; /* السماح بالتفاف الكروت */
+        }
+        
+        .card-container {
+            flex-basis: 300px; /* عرض أساسي للكارت */
+            margin: 10px; /* مسافات */
+        }
+        
+        .card {
+            font-weight: bold;
+            position: relative;
+            width: 100%;
+        }
+
+        .card a {
+            padding: 20px;
+            width: 100%;
+            height: 400px; /* ارتفاع ثابت */
+            border: 2px solid #0d47a1; /* الهوية: أزرق */
+            background: white;
+            text-decoration: none;
+            color: black;
+            display: block;
+            transition: 0.25s ease;
+        }
+
+        .card a:hover {
+            transform: translate(-20px, -20px); /* تأثير الـ Pop-out */
+            border-color: #4CAF50; /* الهوية: أخضر */
+        }
+        
+        .card a:hover .card--display {
+            display: none;
+        }
+
+        .card a:hover .card--hover {
+            display: block;
+        }
+
+        .card .card--display {
+            text-align: center; /* توسيط الأيقونة والعنوان */
+        }
+        
+        .card .card--display i {
+            font-size: 60px;
+            margin-top: 150px; /* مسافة من الأعلى */
+            color: #0d47a1; /* الهوية: أزرق */
+        }
+
+        /* تنسيق خاص لكروت الأرقام (بدون أيقونة) */
+        .card .card--display h2.number-stat {
+             font-size: 3.5em; /* تكبير الرقم */
+             color: #0d47a1;
+             margin-top: 100px;
+        }
+        
+        .card .card--display h2 {
+            margin: 20px 0 0;
+            color: #333;
+            font-size: 1.4em;
+        }
+
+        .card .card--hover {
+            display: none; /* مخفي افتراضياً */
+        }
+
+        .card .card--hover h2 {
+            margin: 20px 0;
+            color: #0d47a1; /* الهوية: أزرق */
+            font-size: 1.4em;
+        }
+        
+        /* تنسيق خاص لكروت الأرقام (Hover) */
+        .card .card--hover h2.number-stat {
+            font-size: 2.5em;
+        }
+
+        .card .card--hover p {
+            font-weight: normal;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        /* تنسيق "القيمة للعميل" */
+        .card .card--hover p.link {
+            margin: 20px 0 0;
+            font-weight: bold;
+            color: #e65100; /* الهوية: برتقالي */
+        }
+
+        .card .card--border {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            border: 2px dashed #0d47a1; /* الهوية: أزرق */
+            z-index: -1;
+        }
+        /* === نهاية أنماط الكروت === */
+
+        a.download-link.cta-button {color: #ffffff !important; background-color: #0d47a1;}
+        a.download-link.cta-button:hover {background-color: #093c7e;}
+
+        /* ------------------------------------------- */
+        /* === 5. تنسيقات الفوتر الموحد === */
+        /* ------------------------------------------- */
+        footer { 
+            background-color: #263238; 
+            color: #ffffff; 
+            padding: 40px 0 20px 0; 
+            margin-top: 50px; 
+            font-size: 0.9em; 
+            flex-shrink: 0; /* يمنع الفوتر من الانكماش */
+        }
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            width: 85%; 
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #4f5b62; 
+        }
+        .footer-col { flex: 1; min-width: 220px; }
+        .footer-col h5 { color: #4CAF50; font-size: 1.3em; margin-top: 0; margin-bottom: 20px; }
+        .footer-col p { color: #ccc; line-height: 1.7; }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { color: #ffffff; text-decoration: none; transition: color 0.3s; pointer-events: auto; cursor: pointer; }
+        .footer-col ul li a:hover { color: #e65100; text-decoration: underline; }
+        .footer-copyright { text-align: center; padding-top: 20px; font-size: 0.9em; color: #ccc; }
+        
+        /* ------------------------------------------- */
+        /* === 6. تنسيقات الاستجابة (الموبايل) === */
+        /* ------------------------------------------- */
+        @media (max-width: 768px) {
+            
+            /* === 6.1: استجابة الهيدر (تم التعديل بالكامل) === */
+            header { 
+                flex-direction: row; 
+                justify-content: space-between; 
+                align-items: center;
+                padding: 10px 20px; 
+                flex-wrap: wrap; 
+            }
+            
+            header img { 
+                order: 1; 
+                max-width: 100px; 
+                margin: 0; 
+            } 
+            .menu-toggle {
+                display: block; 
+                order: 2; 
+            }
+            
+            header nav { 
+                display: none; 
+                order: 3; 
+                width: 100%; 
+                background: #2a3a40; 
+                padding: 10px 0;
+                margin-top: 10px; 
+                border-top: 1px solid #4CAF50;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            }
+            
+            header nav.nav-open {
+                display: block;
+            }
+
+            header nav ul { 
+                flex-direction: column; 
+                align-items: center; 
+                width: 100%; 
+            }
+            header nav ul li { 
+                margin: 10px 0; 
+                width: 100%;
+                text-align: center;
+            }
+            header nav ul li a { 
+                display: block; 
+                padding: 10px 0; 
+                border-bottom: none !important; 
+                width: 100%;
+            }
+            header nav ul li a:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+            header nav ul li a[href="index.html"] {
+                 color: #e65100;
+                 font-weight: 700;
+            }
+            /* === نهاية تعديل الهيدر === */
+
+            
+            /* استجابة السلايدر */
+            .slide-content h2 { font-size: 2.2em; }
+            .slide-content p { font-size: 1em; display: none; }
+            .slide-content { bottom: 60px; }
+            .mySlides, .mySlides img { height: 400px; } 
+
+            /* === تم حذف .features, .impact-grid { flex-direction: column; } === */
+            
+            /* استجابة الفوتر */
+            .footer-container { flex-direction: column; align-items: flex-start; }
+            .footer-col { margin-bottom: 20px; min-width: 100%; }
+        }
+
+    </style>
+</head>
+<body oncontextmenu="return false;"> 
+
+    <div class="content-wrapper">
+        <header>
+            <button class="menu-toggle" id="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <img src="rs-logo-2.png" alt="RE:SOURCE SYSTEMS Logo">
+            
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="about.html">من نحن</a></li> 
+                    <li><a href="services.html">حلولنا الدائرية</a></li>
+                    <li><a href="contact.html">طلب تقييم الأثر</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="slideshow-container">
+
+            <div class="mySlides fade">
+                <div class="numbertext">1 / 3</div>
+                <div class="slide-content">
+                    <h2>من النفايات إلى القيمة: ثورة المنسوجات الدائرية لشركتك.</h2>
+                    <p>نحن نحول الزي الرسمي القديم والأقمشة المهملة إلى مواد خام مستدامة عالية الجودة، مما يحقق أهداف الاستدامة ويخفض التكاليف التشغيلية.</p>
+                    <a href="contact.html" class="cta-button"> احجز تقييم الأثر البيئي المجاني</a>
+                </div>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="numbertext">2 / 3</div>
+                <div class="slide-content">
+                    <h2>80% تخفيض في البصمة الكربونية.</h2>
+                    <p>شراكتك معنا تضمن تقليل انبعاثات ثاني أكسيد الكربون بشكل ملموس، مما يدعم تقارير الاستدامة الخاصة بك (ESG).</p>
+                    <a href="services.html" class="cta-button"> شاهد تقاريرنا</a>
+                </div>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="numbertext">3 / 3</div>
+                <div class="slide-content">
+                    <h2>حلول حصرية للمؤسسات الكبرى (B2B).</h2>
+                    <p>نحن نركز فقط على معالجة المنسوجات بكميات كبيرة من الفنادق، المستشفيات، والمؤسسات الصناعية.</p>
+                    <a href="services.html" class="cta-button"> تعرف على حلولنا</a>
+                </div>
+            </div>
+
+            <a class="prev" onclick="plusSlides(-1)">&#10095;</a> 
+            <a class="next" onclick="plusSlides(1)">&#10094;</a> 
+        </div>
+
+        <div class="dots-container">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+
+        <div class="container">
+            <section id="problem-solution">
+                <h3>المشكلة والحل</h3>
+                <div class="features">
+                    
+                    <div class="card-container">
+                        <div class="card">
+                            <a href="#">
+                                <div class="card--display">
+                                    <i class="material-icons">warning</i>
+                                    <h2>التحدي: النفايات المنسوجة</h2>
+                                </div>
+                                <div class="card--hover">
+                                    <h2>التحدي: النفايات المنسوجة</h2>
+                                    <p>المؤسسات الكبرى تتخلص من آلاف الأطنان من المنسوجات القابلة لإعادة التدوير في مدافن القمامة سنوياً، مما يهدر الموارد ويزيد من البصمة الكربونية.</p>
+                                    </div>
+                            </a>
+                            <div class="card--border"></div>
+                        </div>
+                    </div>
+
+                    <div class="card-container">
+                        <div class="card">
+                            <a href="#">
+                                <div class="card--display">
+                                    <i class="material-icons">recycling</i>
+                                    <h2>مهمتنا: الحلقة المغلقة</h2>
+                                </div>
+                                <div class="card--hover">
+                                    <h2>مهمتنا: الحلقة المغلقة</h2>
+                                    <p>باستخدام التكنولوجيا اللوجستية وشراكات المعالجة، نضمن عودة كل كيلو غرام من زيكم الرسمي إلى دورة الإنتاج كألياف خام نقية ومستدامة.</p>
+                                </div>
+                            </a>
+                            <div class="card--border"></div>
+                        </div>
+                    </div>
+
+                    <div class="card-container">
+                        <div class="card">
+                            <a href="#">
+                                <div class="card--display">
+                                    <i class="material-icons">verified</i>
+                                    <h2>القيمة: المصداقية والأثر</h2>
+                                </div>
+                                <div class="card--hover">
+                                    <h2>القيمة: المصداقية والأثر</h2>
+                                    <p>نقدم لشركتك تقارير شفافة وموثقة تثبت مساهمتك الفعلية في الاقتصاد الدائري، مما يدعم تقارير الاستدامة (ESG) الخاصة بك.</p>
+                                </div>
+                            </a>
+                            <div class="card--border"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="impact">
+                <h3>أثرنا بالأرقام</h3>
+                <div class="features"> 
+                    
+                    <div class="card-container">
+                        <div class="card">
+                            <a href="#">
+                                <div class="card--display">
+                                    <h2 class="number-stat">+90%</h2>
+                                </div>
+                                <div class="card--hover">
+                                    <h2 class="number-stat">+90%</h2>
+                                    <p>معدل تحويل المواد إلى مدخلات صناعية جديدة.</p>
+                                </div>
+                            </a>
+                            <div class="card--border"></div>
+                        </div>
+                    </div>
+
+                    <div class="card-container">
+                        <div class="card">
+                            <a href="#">
+                                <div class="card--display">
+                                    <h2 class="number-stat">وفر 80%</h2>
+                                </div>
+                                <div class="card--hover">
+                                    <h2 class="number-stat">وفر 80%</h2>
+                                    <p>توفير في انبعاثات CO2 مقارنة باستخدام الألياف البكر.</p>
+                                </div>
+                            </a>
+                            <div class="card--border"></div>
+                        </div>
+                    </div>
+
+                    <div class="card-container">
+                        <div class="card">
+                            <a href="#">
+                                <div class="card--display">
+                                    <h2 class="number-stat">التزام B2B</h2>
+                                </div>
+                                <div class="card--hover">
+                                    <h2 class="number-stat">التزام B2B</h2>
+                                    <p>تركيز كامل على الشراكات المؤسسية (الفنادق، المستشفيات، التجارة) وحجم النفايات الكبير.</p>
+                                </div>
+                            </a>
+                            <div class="card--border"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <p style="text-align: center; margin-top: 30px;"><a href="contact.html" class="download-link cta-button">اطلب تقرير التقييم المجاني الآن.</a></p>
+            </section>
+        </div>
+    </div> <footer>
+        <div class="footer-container">
+            <div class="footer-col" style="flex: 1.5;"> <h5>عن RE:SOURCE SYSTEMS</h5>
+                <p>نحن شركاء الاستدامة للمؤسسات (B2B)، نبتكر حلولاً لوجستية وتكنولوجية لسد الفجوة في الاقتصاد الدائري للمنسوجات وتحويل النفايات إلى قيمة موثقة.</p>
+            </div>
+            <div class="footer-col">
+                <h5>روابط سريعة</h5>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="about.html">من نحن (الرؤية والرسالة)</a></li>
+                    <li><a href="services.html">حلولنا الدائرية</a></li>
+                    <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>تواصل معنا</h5>
+                <ul>
+                    <li><a href="contact.html">اطلب تقييم الأثر الآن (مجاني)</a></li>
+                    <li><a href="mailto:info@resourcesystems.com" style="pointer-events: auto;">info@resourcesystems.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            &copy; 2025 RE:SOURCE SYSTEMS. جميع الحقوق محفوظة. بناء حلول مستدامة بأقل تكلفة.
+        </div>
+    </footer>
+    
+    <script>
+        // --- 5.1: كود الحماية ---
+        document.onkeydown = function(e) {
+            if (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83 || e.keyCode === 65 || e.keyCode === 67)) {
+                return false;
+            }
+        };
+
+        // --- 5.2: كود التحكم بأسهم الكيبورد ---
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "ArrowLeft") { // السهم الأيسر (للتالي في RTL)
+                plusSlides(1);
+            } else if (e.key === "ArrowRight") { // السهم الأيمن (للسابق في RTL)
+                plusSlides(-1);
+            }
+        });
+
+        // --- 5.3: كود السلايدر (من عندك) ---
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            
+            if (n > slides.length) {slideIndex = 1} 
+            if (n < 1) {slideIndex = slides.length} 
+            
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active";
+        }
+
+        // التشغيل التلقائي
+        setInterval(function() {
+            plusSlides(1);
+        }, 5000); // 5 ثواني
+
+        // --- 5.4: كود قائمة الموبايل (الجديد) ---
+        const menuButton = document.getElementById('mobile-menu-button');
+        const navMenu = document.getElementById('main-nav');
+
+        menuButton.addEventListener('click', () => {
+            // فتح/قفل القائمة
+            navMenu.classList.toggle('nav-open');
+            
+            // تحديث حالة الزرار (للقارئات المساعدة)
+            const isExpanded = navMenu.classList.contains('nav-open');
+            menuButton.setAttribute('aria-expanded', isExpanded);
+        });
+
+    </script>
+</body>
+</html>
