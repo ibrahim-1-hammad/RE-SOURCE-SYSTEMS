@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة إدارة RE:SOURCE SYSTEMS - لوحة القيادة</title>
+    <link rel="stylesheet" href="../admin-style.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+   
+<body>
+
+    <div class="admin-header">
+                <h1>  لوحة القيادة | RE:SOURCE SYSTEMS </h1>
+
+        <p>مرحباً، [اسم المدير] | <a href="login.html" style="color: #ffcc80;">تسجيل الخروج</a></p>
+    </div>
+
+    <div class="admin-container">
+        
+        <section>
+            <h3>ملخص الأداء والإيرادات</h3>
+            <div class="stats-grid">
+                
+                <div class="stat-box">
+                    <h2>85 طن</h2>
+                    <p>إجمالي المنسوجات المُحولة (الأثر المادي الإجمالي)</p>
+                </div>
+                
+                <div class="stat-box">
+                    <h2>4 عقود</h2>
+                    <p>العملاء النشطون في برنامج الجمع الدوري</p>
+                </div>
+
+                <div class="stat-box">
+                    <h2>280,000 كجم</h2>
+                    <p>تخفيض مُعتمد في انبعاثات CO2</p>
+                </div>
+
+                <div class="stat-box">
+                    <h2>18,000 SAR</h2>
+                    <p>إجمالي الإيرادات المتوقعة (مبيعات الألياف ورسوم الخدمة)</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h3>مؤشرات الأداء الرسومية (محاكاة)</h3>
+            <div class="chart-area">
+                <h4>تطور الإيرادات المتوقعة مقابل الأثر البيئي (نمو النظام)</h4>
+                <div class="chart-placeholder">
+                    <div class="chart-area">
+    <h4 style="color: #0d47a1;">تطور الإيرادات المتوقعة مقابل الأثر البيئي (نمو النظام)</h4>
+    <div style="height: 150px;"> 
+        <canvas id="impactChart"></canvas> 
+    </div>
+</div>
+            </div>
+        </section>
+
+        <section>
+            <h3>إدارة تدفق العمل والمهام العاجلة</h3>
+            
+            <div class="action-links">
+                <a href="#">+ إضافة عميل جديد</a>
+                <a href="client_reports.html">✅ إدخال بيانات عملية الجمع والمعالجة الأخيرة</a>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>اسم الشركة</th>
+                        <th>الحالة / الموقف</th>
+                        <th>الكمية المخططة (كجم)</th>
+                        <th>الإجراء المطلوب</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>فندق الساحل الذهبي (العميل الرائد)</td>
+                        <td style="color: #00c853;">نشط / انتظار الجمع</td>
+                        <td>450 كجم</td>
+                        <td>**جدولة النقل:** تأكيد الموعد النهائي مع شريك النقل (شريك 4.2).</td>
+                    </tr>
+                    <tr>
+                        <td>مستشفى النور التخصصي</td>
+                        <td style="color: #e65100;">عميل محتمل (تحت التفاوض)</td>
+                        <td>700 كجم (مقترح)</td>
+                        <td>**إجراء مبيعات:** إرسال نسخة من "تقرير الأثر" للتحفيز.</td>
+                    </tr>
+                    <tr>
+                        <td>مصنع ألياف الصقر (المشتري)</td>
+                        <td style="color: #0d47a1;">شريك مُلزم (LOI)</td>
+                        <td>3 طن شهرياً</td>
+                        <td>**إدارة الجودة:** التحقق من جاهزية دفعات الألياف رقم 002.</td>
+                    </tr>
+                </tbody>    
+            </table>
+        </section>
+        
+    </div>
+
+    <footer>
+        &copy; 2025 RE:SOURCE SYSTEMS. لوحة الإدارة الداخلية - محجوزة للمديرين.
+    </footer>
+<script src="../assets/js/chart_library.js"></script>
+</body>
+</html>

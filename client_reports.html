@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدخال بيانات التقرير - RE:SOURCE SYSTEMS</title>
+    <link rel="stylesheet" href="../style.css"> 
+    <style>
+        /* تنسيق خاص للنموذج */
+        .report-form {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #0d47a1;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+        .form-group textarea {
+            resize: vertical;
+            height: 100px;
+        }
+        .submit-btn {
+            background-color: #e65100;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1em;
+            width: auto;
+            display: block;
+            margin-top: 30px;
+        }
+        .submit-btn:hover {
+            background-color: #ff8f00;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-header" style="text-align: center; padding: 20px;background: linear-gradient(to right, #0d47a1, #4CAF50); color: white;">
+        <h1>RE:SOURCE SYSTEMS | لوحة المدير</h1>
+        <p>إدخال بيانات التقرير <a href="dashboard.html" style="color: #ffcc80;">(العودة للوحة التحكم)</a></p>
+    </div>
+
+    <div class="admin-container">
+        
+        <section>
+            <h3 style="color: #0d47a1;">تسجيل عملية جمع ومعالجة جديدة</h3>
+            
+            <form class="report-form" action="#" method="POST">
+                
+                <div class="form-group">
+                    <label for="client_id">اختيار العميل (الشركة المُولّدة للنفايات):</label>
+                    <select id="client_id" name="client_id" required>
+                        <option value="">-- اختر العميل --</option>
+                        <option value="A001">فندق الساحل الذهبي (العميل الرائد)</option>
+                        <option value="A002">مستشفى النور التخصصي</option>
+                        </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="collection_date">تاريخ عملية الجمع:</label>
+                    <input type="date" id="collection_date" name="collection_date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="weight_collected">الوزن الكلي المُجمع (بالكيلوغرام):</label>
+                    <input type="number" id="weight_collected" name="weight_collected" placeholder="مثال: 450" required>
+                </div>
+
+                <hr style="margin: 40px 0; border-color: #ddd;">
+
+                <div class="form-group">
+                    <label for="material_type">نوع المنسوجات المُجمعة (الأكثر هيمنة):</label>
+                    <select id="material_type" name="material_type" required>
+                        <option value="">-- اختر النوع --</option>
+                        <option value="PolyCotton">أقطان مختلطة (زي موحد)</option>
+                        <option value="Cotton100">قطن 100% (مفروشات)</option>
+                        <option value="Polyester100">بوليستر 100%</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="recycled_percentage">نسبة المعالجة/الاسترداد النهائية (للتصدير للمشتري - %):</label>
+                    <input type="number" id="recycled_percentage" name="recycled_percentage" placeholder="مثال: 95" min="0" max="100" required>
+                    <small>كم كيلوغرام تم تحويله بنجاح إلى ألياف قابلة للبيع (باستثناء الفاقد).</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="co2_saved">الأثر البيئي: تخفيض انبعاثات CO2 المُحتسب (بالكيلوغرام):</label>
+                    <input type="number" id="co2_saved" name="co2_saved" placeholder="يُحسب بناءً على معادلات إعادة التدوير" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="notes">ملاحظات فريق التشغيل (مثل: حالة المادة، تحديات النقل):</label>
+                    <textarea id="notes" name="notes"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">✅ توثيق العملية وتحديث لوحة التحكم</button>
+            </form>
+
+        </section>
+        
+    </div>
+
+    <footer>
+        &copy; 2025 RE:SOURCE SYSTEMS. لوحة الإدارة الداخلية - نظام الإدخال.
+    </footer>
+
+</body>
+</html>

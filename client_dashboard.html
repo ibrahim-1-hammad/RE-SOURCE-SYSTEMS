@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم الأثر البيئي - فندق الساحل الذهبي</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    
+    <style>
+        /* CSS الأساسي للجسم والحاوية */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            direction: rtl;
+            text-align: right;
+            /* الحماية: منع تحديد النص (CSS) */
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+
+        .client-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding-top: 20px;
+        }
+        
+        /* ------------------------------------------- */
+        /* تنسيقات الهيدر الثابت والمغلق (Client-Header) */
+        /* ------------------------------------------- */
+        .client-header {
+           background: linear-gradient(to right, #0d47a1, #4CAF50);
+            color: #ffffff;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-bottom: 4px solid #4CAF50;
+        }
+
+        .client-header img {
+            max-width: 120px;
+            height: auto;
+            margin: 0;
+            display: block;
+            order: 2; /* اللوجو في أقصى اليسار في RTL */
+            /* منع النسخ/السحب/التنزيل للصور */
+            pointer-events: none;
+            -webkit-user-drag: none;
+        }
+
+        .client-header .header-text {
+            order: 1; /* النص في أقصى اليمين في RTL */
+            flex-grow: 1;
+            padding-right: 20px;
+        }
+        
+        .client-header h1 {
+            font-size: 1.5em;
+            margin: 0 0 5px 0;
+            font-weight: 600;
+        }
+
+        .client-header p {
+            font-size: 0.9em;
+            margin: 0;
+            opacity: 0.8;
+        }
+        
+        /* ------------------------------------------- */
+        /* تنسيق الودجات (الاستجابة عبر Flex) */
+        /* ------------------------------------------- */
+
+        .impact-widgets {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .widget {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            flex: 1;
+            text-align: center;
+            min-width: 150px; /* لضمان عدم انهيار الودجت في المساحات الضيقة قبل الانتقال للوضع العمودي */
+        }
+        
+        /* استجابة الودجات على الشاشات الصغيرة (أجهزة الجوال) */
+        @media (max-width: 768px) {
+            .impact-widgets {
+                flex-direction: column; /* تحويل إلى عمود واحد */
+            }
+            .client-header {
+                flex-direction: column;
+                text-align: center;
+                align-items: flex-start;
+                padding: 15px 10px;
+            }
+            .client-header .header-text,
+            .client-header a img {
+                order: initial; /* إلغاء ترتيب flexbox لترتيبها عمودياً */
+                padding: 0;
+                margin: 5px 0;
+            }
+        }
+
+        /* ------------------------------------------- */
+        /* تنسيق الأرقام والروابط */
+        /* ------------------------------------------- */
+
+        .widget h2 {
+            color: #e65100;
+            font-size: 2.2em;
+            margin: 0 0 5px 0;
+        }
+
+        .widget p {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        /* حماية: منع نسخ الروابط والـ URLs في كل مكان */
+        a {
+            pointer-events: none; /* تعطيل النقر على الروابط */
+            cursor: default;
+        }
+
+        /* استثناء: السماح بتنزيل الملفات (رابط التوثيق) */
+        .documentation-link {
+            pointer-events: auto; /* تمكين النقر مجدداً */
+            cursor: pointer;
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .client-footer {
+            background-color: #333;
+            color: #ccc;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 0.8em;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;"> 
+    <div class="client-header">
+        
+        <div class="header-text">
+            <h1>تقرير الأثر الدائري لـ "فندق الساحل الذهبي"</h1>
+            <p>مرحباً بك، مدير الاستدامة | RE:SOURCE SYSTEMS شريكك الدائم.</p>
+        </div>
+        <img src="rs-logo-2.png" alt="RE:SOURCE SYSTEMS Logo"> 
+        
+    </div>
+
+    <div class="client-container">
+        
+        <section>
+            <h3 style="color: #0d47a1;">ملخص أهداف الاستدامة (ESG)</h3>
+            <div class="impact-widgets">
+                
+                <div class="widget">
+                    <h2>980 كجم</h2>
+                    <p>إجمالي المنسوجات المُحولة (لم تذهب إلى مكب النفايات)</p>
+                </div>
+                
+                <div class="widget">
+                    <h2>3.2 طن</h2>
+                    <p>تخفيض مُعادل في انبعاثات ثاني أكسيد الكربون (CO2)</p>
+                </div>
+
+                <div class="widget">
+                    <h2>38%</h2>
+                    <p>نسبة المساهمة في الموارد الدائرية للمنطقة</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="report-section">
+            <h3>تتبع الرحلة والأداء (البيانات المرئية)</h3>
+            
+            <div style="width: 100%;">
+                    <canvas id="clientImpactChart" style="height: 400px;"></canvas>
+            </div>
+            
+            <hr style="margin: 40px 0; border-color: #eee;">
+            
+            <div class="shipment-log">
+                <h3 style="margin-top: 40px; color: #0d47a1; border-color: #e65100;">سجل الشحنات والتوثيق</h3>
+                <p><strong>الشحنة الأخيرة (15 أكتوبر):</strong> تم جمع 450 كجم من الزي الموحد. <br>
+                    <strong>توثيق الأثر:</strong> تم تحويل 95% من هذه الكمية إلى ألياف بوليستر وقطن نقي. <br>
+                    <a href="#" class="documentation-link" download>*تحميل تقرير الأثر الموثق (PDF) لتقارير ESG</a>
+                </p>
+            </div>
+        </section>
+        
+    </div>
+
+    <div class="client-footer">
+        هذه البيانات مقدمة من RE:SOURCE SYSTEMS لضمان الشفافية الكاملة والامتثال لمعايير الاستدامة العالمية.
+    </div>
+    
+    <script>
+        // الحماية الثالثة: تعطيل اختصارات النسخ واللصق
+        document.onkeydown = function(e) {
+            // تعطيل Ctrl+U, Ctrl+S, Ctrl+A, Ctrl+C
+            if (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83 || e.keyCode === 65 || e.keyCode === 67)) {
+                return false;
+            }
+        };
+
+        // دالة لتهيئة بيانات وهمية (Mock Data) للرسم البياني
+        function initializeChart() {
+            const ctx = document.getElementById('clientImpactChart').getContext('2d');
+            
+            const data = {
+                labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو'],
+                datasets: [{
+                    label: 'المنسوجات المُحولة (كجم)',
+                    data: [150, 250, 300, 400, 550, 680],
+                    borderColor: '#4CAF50', 
+                    backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                },
+                {
+                    label: 'CO2 المُخفض (طن)',
+                    data: [0.5, 0.8, 1.0, 1.3, 1.8, 2.2],
+                    borderColor: '#0D47A1', 
+                    backgroundColor: 'rgba(13, 71, 161, 0.1)',
+                    yAxisID: 'y1',
+                    tension: 0.4
+                }]
+            };
+
+            const config = {
+                type: 'line',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    stacked: false,
+                    plugins: {
+                        title: { display: true, text: 'الأداء الشهري: كمية المنسوجات المُحولة والأثر الكربوني' }
+                    },
+                    scales: {
+                        y: { type: 'linear', display: true, position: 'right', title: { display: true, text: 'المنسوجات المُحولة (كجم)' } },
+                        y1: { type: 'linear', display: true, position: 'left', title: { display: true, text: 'CO2 المُخفض (طن)' }, grid: { drawOnChartArea: false } },
+                        x: { reverse: true }
+                    }
+                }
+            };
+
+            new Chart(ctx, config);
+        }
+
+        // تشغيل الدالة بعد تحميل الصفحة
+        window.onload = initializeChart;
+    </script>
+</body>
+</html>

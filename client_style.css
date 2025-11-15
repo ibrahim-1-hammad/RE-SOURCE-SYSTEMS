@@ -1,0 +1,161 @@
+/* assets/css/client_style.css - تصميم فخم ومبهر مع تباين قوي */
+
+/* ---------------------------------- */
+/* 1. Base Styles & Typography */
+/* ---------------------------------- */
+body {
+    font-family: 'Tahoma', 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f9fc; /* خلفية ناصعة البياض مع لمسة خفيفة */
+    color: #1a2a3a; /* نص داكن جداً للقراءة */
+    direction: rtl;
+    text-align: right;
+    line-height: 1.6;
+}
+
+a {
+    color: #0d47a1;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #e65100;
+}
+
+.client-container {
+    padding: 40px 5%; /* زيادة المسافة الداخلية */
+}
+
+/* ---------------------------------- */
+/* 2. Header & Navigation */
+/* ---------------------------------- */
+.client-header {
+    background-color: #0d47a1; /* الأزرق البحري الداكن */
+    color: white;
+    padding: 30px 5%;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* ظل أعمق للفخامة */
+}
+
+.client-header h1 {
+    font-size: 2em; /* تكبير الخط */
+    margin: 0;
+    font-weight: 700;
+}
+
+/* ---------------------------------- */
+/* 3. Impact Widgets (مقاييس الأداء الرئيسية) */
+/* ---------------------------------- */
+.impact-widgets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px; /* مسافة أكبر */
+    margin-bottom: 50px;
+}
+
+.widget {
+    background: white;
+    padding: 35px;
+    border-radius: 15px; /* حواف أكثر دائرية */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    border-right: 6px solid #00bfa5; /* خط أخضر زمردي بارز جداً */
+}
+
+.widget:hover {
+    transform: translateY(-8px); /* تأثير رفع ملحوظ */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.widget h2 {
+    /* الأرقام الكبيرة والمبهرة */
+    color: #00bfa5; /* الأخضر الزمردي */
+    font-size: 4em; /* حجم ضخم للرقم */
+    margin: 0;
+    font-weight: 900;
+}
+
+.widget p {
+    font-weight: 600;
+    color: #455a64; 
+    margin-top: 10px;
+    font-size: 1.2em; /* خط أكبر للعناوين */
+}
+
+/* ---------------------------------- */
+/* 4. Report Section & Visualization */
+/* ---------------------------------- */
+.report-section {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.report-section h3 {
+    color: #e65100; 
+    border-bottom: 3px solid #0d47a1; /* خط أعمق وأكثر تحديداً */
+    padding-bottom: 12px;
+    margin-bottom: 30px;
+    font-size: 1.8em;
+    font-weight: 700;
+}
+
+/* Visualization Placeholder Style */
+.viz-placeholder {
+    width: 100%;
+    height: 450px; /* ارتفاع أكبر للرسوم */
+    background-color: #f0f2f5;
+    border: 1px solid #cceeff; /* إطار أزرق فاتح */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4em; /* خط كبير لرسائل التذكير */
+    color: #555;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* سجل الشحنات والتوثيق */
+.shipment-log p {
+    background-color: #f7f9fb; /* خلفية مميزة لسجل الشحنات */
+    padding: 15px;
+    border-radius: 8px;
+    border-right: 4px solid #0d47a1;
+    margin-top: 20px;
+    line-height: 1.8;
+}
+
+.shipment-log strong {
+    color: #0d47a1;
+}
+
+/* ---------------------------------- */
+/* 5. Footer & Utility */
+/* ---------------------------------- */
+.client-footer {
+    text-align: center;
+    padding: 30px;
+    color: #6c757d;
+    font-size: 0.9em;
+    margin-top: 50px;
+    border-top: 1px solid #eee;
+}
+
+.documentation-link {
+    display: inline-block;
+    background-color: #e65100;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 30px; /* شكل بيضاوي (Pill Shape) */
+    margin-top: 25px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(230, 81, 0, 0.4);
+}
+
+.documentation-link:hover {
+    background-color: #ff8f00;
+    box-shadow: 0 6px 15px rgba(255, 143, 0, 0.6);
+}
